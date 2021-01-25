@@ -12,7 +12,6 @@ Target::Target()
 	getTransform()->position = glm::vec2(100.0f, 100.0f);
 	getRigidBody()->velocity = glm::vec2(0, 0);
 	getRigidBody()->isColliding = false;
-
 	setType(TARGET);
 }
 

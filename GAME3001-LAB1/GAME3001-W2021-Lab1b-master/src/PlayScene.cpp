@@ -66,8 +66,7 @@ void PlayScene::start()
 	m_pTarget = new Target();
 	m_pTarget->getTransform()->position = glm::vec2(600.0f, 200.0f);
 	addChild(m_pTarget);
-
-	// instantiating spaceship
+	
 	m_pSpaceShip = new SpaceShip();
 	m_pSpaceShip->getTransform()->position = glm::vec2(100.0f, 100.0f);
 	m_pSpaceShip->setEnabled(false);
