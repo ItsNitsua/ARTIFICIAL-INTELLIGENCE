@@ -3,6 +3,7 @@
 #include "Game.h"
 #include "glm/gtx/string_cast.hpp"
 #include "EventManager.h"
+#include "Renderer.h"
 
 StartScene::StartScene()
 {
@@ -15,6 +16,7 @@ StartScene::~StartScene()
 void StartScene::draw()
 {
 	drawDisplayList();
+	SDL_SetRenderDrawColor(Renderer::Instance()->getRenderer(), 150, 255, 255, 255);
 }
 
 void StartScene::update()
@@ -37,7 +39,7 @@ void StartScene::handleEvents()
 		TheGame::Instance()->quit();
 	}
 
-	if(EventManager::Instance().isKeyDown(SDL_SCANCODE_1))
+	if(EventManager::Instance().isKeyDown(SDL_SCANCODE_1)) // press one to go to scene
 	{
 		TheGame::Instance()->changeSceneState(PLAY_SCENE);
 	}
@@ -45,15 +47,15 @@ void StartScene::handleEvents()
 
 void StartScene::start()
 {
-	const SDL_Color blue = { 0, 0, 255, 255 };
-	m_pStartLabel = new Label("START SCENE", "Consolas", 80, blue, glm::vec2(400.0f, 40.0f));
+
+	const SDL_Color pink = { 255, 153, 255, 255 };
+	m_pStartLabel = new Label("Austin Lim", "Lazy", 90, pink, glm::vec2(400.0f, 60.0f));
 	m_pStartLabel->setParent(this);
 	addChild(m_pStartLabel);
 
-	m_pInstructionsLabel = new Label("Press 1 to Play", "Consolas", 40, blue, glm::vec2(400.0f, 120.0f));
+	m_pInstructionsLabel = new Label("ID:101251873", "Lazy", 40, pink, glm::vec2(400.0f, 120.0f));
 	m_pInstructionsLabel->setParent(this);
 	addChild(m_pInstructionsLabel);
-
 
 	m_pShip = new Ship();
 	m_pShip->getTransform()->position = glm::vec2(400.0f, 300.0f); 
