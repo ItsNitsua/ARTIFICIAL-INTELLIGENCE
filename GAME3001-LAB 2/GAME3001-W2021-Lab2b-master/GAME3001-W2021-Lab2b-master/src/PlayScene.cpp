@@ -24,7 +24,7 @@ void PlayScene::draw()
 	}
 
 	drawDisplayList();
-	SDL_SetRenderDrawColor(Renderer::Instance()->getRenderer(), 255, 255, 255, 255);
+	SDL_SetRenderDrawColor(Renderer::Instance()->getRenderer(), 255, 255, 160, 255);
 }
 
 void PlayScene::update()
@@ -48,15 +48,6 @@ void PlayScene::handleEvents()
 		TheGame::Instance()->quit();
 	}
 
-	if (EventManager::Instance().isKeyDown(SDL_SCANCODE_1))
-	{
-		TheGame::Instance()->changeSceneState(START_SCENE);
-	}
-
-	if (EventManager::Instance().isKeyDown(SDL_SCANCODE_2))
-	{
-		TheGame::Instance()->changeSceneState(END_SCENE);
-	}
 }
 
 void PlayScene::start()
