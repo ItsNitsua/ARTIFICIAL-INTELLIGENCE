@@ -103,15 +103,25 @@ void PlayScene::handleEvents()
 		TheGame::Instance()->quit();
 	}
 
-	if (EventManager::Instance().isKeyDown(SDL_SCANCODE_1))
+	if (EventManager::Instance().isKeyDown(SDL_SCANCODE_1)) // goes to seeking
 	{
 		TheGame::Instance()->changeSceneState(START_SCENE);
 	}
+	if (EventManager::Instance().isKeyDown(SDL_SCANCODE_2)) // goes to fleeing
+	{
+		TheGame::Instance()->changeSceneState(END_SCENE); 
+	}
 
-	if (EventManager::Instance().isKeyDown(SDL_SCANCODE_2))
+	if (EventManager::Instance().isKeyDown(SDL_SCANCODE_3)) // goes to Arrival
 	{
 		TheGame::Instance()->changeSceneState(END_SCENE);
 	}
+
+	if (EventManager::Instance().isKeyDown(SDL_SCANCODE_4)) // goes to Avoidance
+	{
+		TheGame::Instance()->changeSceneState(END_SCENE);
+	}
+		
 }
 
 void PlayScene::start()
@@ -128,46 +138,6 @@ void PlayScene::start()
 	addChild(m_pPlayer);
 	m_playerFacingRight = true;
 
-	// Back Button
-	m_pBackButton = new Button("../Assets/textures/backButton.png", "backButton", BACK_BUTTON);
-	m_pBackButton->getTransform()->position = glm::vec2(300.0f, 400.0f);
-	m_pBackButton->addEventListener(CLICK, [&]()-> void
-	{
-		m_pBackButton->setActive(false);
-		TheGame::Instance()->changeSceneState(START_SCENE);
-	});
-
-	m_pBackButton->addEventListener(MOUSE_OVER, [&]()->void
-	{
-		m_pBackButton->setAlpha(128);
-	});
-
-	m_pBackButton->addEventListener(MOUSE_OUT, [&]()->void
-	{
-		m_pBackButton->setAlpha(255);
-	});
-	addChild(m_pBackButton);
-
-	// Next Button
-	m_pNextButton = new Button("../Assets/textures/nextButton.png", "nextButton", NEXT_BUTTON);
-	m_pNextButton->getTransform()->position = glm::vec2(500.0f, 400.0f);
-	m_pNextButton->addEventListener(CLICK, [&]()-> void
-	{
-		m_pNextButton->setActive(false);
-		TheGame::Instance()->changeSceneState(END_SCENE);
-	});
-
-	m_pNextButton->addEventListener(MOUSE_OVER, [&]()->void
-	{
-		m_pNextButton->setAlpha(128);
-	});
-
-	m_pNextButton->addEventListener(MOUSE_OUT, [&]()->void
-	{
-		m_pNextButton->setAlpha(255);
-	});
-
-	addChild(m_pNextButton);
 
 	/* Instructions Label */
 	m_pInstructionsLabel = new Label("Press 1: Seeking||Press 2: Fleeing||Press 3: Arrival||Press 4: Avoidance", "Consolas");
@@ -184,7 +154,7 @@ void PlayScene::GUI_Function() const
 	// See examples by uncommenting the following - also look at imgui_demo.cpp in the IMGUI filter
 	//ImGui::ShowDemoWindow();
 	
-	ImGui::Begin("GAME3001 - Assignmemt 1", NULL, ImGuiWindowFlags_AlwaysAutoResize | ImGuiWindowFlags_MenuBar);
+	ImGui::Begin("GAME3001 - Assignment 1", NULL, ImGuiWindowFlags_AlwaysAutoResize | ImGuiWindowFlags_MenuBar);
 
 	if(ImGui::Button("My Button"))
 	{
