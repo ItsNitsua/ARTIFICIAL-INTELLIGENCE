@@ -1,18 +1,20 @@
 #pragma once
-#ifndef __PLAY_SCENE__
-#define __PLAY_SCENE__
+#ifndef __SEEKING_SCENE__
+#define __SEEKING_SCENE__
 
-#include "Scene.h"
-#include "Plane.h"
-#include "Player.h"
 #include "Button.h"
 #include "Label.h"
+#include "Plane.h"
+#include "Player.h"
+#include "Scene.h"
+#include "SpaceShip.h"
+#include "Target.h"
 
-class PlayScene : public Scene
+class SeekingScene : public Scene
 {
 public:
-	PlayScene();
-	~PlayScene();
+	SeekingScene();
+	~SeekingScene();
 
 	// Scene LifeCycle Functions
 	virtual void draw() override;
@@ -24,12 +26,13 @@ private:
 	// IMGUI Function
 	void GUI_Function() const;
 	std::string m_guiTitle;
-	
+
 	glm::vec2 m_mousePosition;
 
-	// UI Items
-	
-	Label* m_pInstructionsLabel;
+	Label* m_pSeekingLabel;
+
+	SpaceShip* m_pSeekingShip;
+	Target* m_pTarget;
 };
 
-#endif /* defined (__PLAY_SCENE__) */
+#endif 

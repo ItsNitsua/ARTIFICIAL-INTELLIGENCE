@@ -38,6 +38,20 @@ float Util::clamp(float value, const float min, const float max)
 	return value;
 }
 
+glm::vec2 Util::clamp(glm::vec2 vec, const float max_length)
+{
+	const auto sqr_magnitude = Util::squaredMagnitude(vec);
+	if (sqr_magnitude > max_length * max_length)
+	{
+		const auto mag = sqrt(sqr_magnitude);
+		const auto normalized_x = vec.x / mag;
+		const auto normalized_y = vec.y / mag;
+		return glm::vec2(normalized_x * max_length, normalized_y * max_length);
+	}
+	return vec;
+}
+
+
 /**
 * Clamps a value between 0 and 1 and returns the result
 *
@@ -132,6 +146,13 @@ float Util::lerp(const float a, const float b, const float t)
 	return a + (b - a) * Util::clamp01(t);
 }
 
+glm::vec2 Util::lerp(const glm::vec2 p0, const glm::vec2 p1, const float t)
+{
+	const auto lerpXs = lerp(p0.x, p1.x, t);
+	const auto lerpYs = lerp(p0.y, p1.y, t);
+	return glm::vec2(lerpXs, lerpYs);
+}
+
 /**
 	 * Lerps between a and b at some t value - unclamped.
 *
@@ -168,6 +189,12 @@ float Util::RandomRange(const float min, const float max)
 	return min + static_cast <float> (rand()) / (static_cast <float> (RAND_MAX / (max - min)));
 }
 
+glm::vec2 Util::RandomRange(const glm::vec2 p0, const glm::vec2 p1)
+{
+	const auto random_x = RandomRange(p0.x, p1.x);
+	const auto random_y = RandomRange(p0.y, p1.y);
+	return glm::vec2(random_x, random_y);
+}
 /**
 * This Utility function checks to see if a number is very small (close to EPSILON)
 * If so, it changes the value to 0.0;

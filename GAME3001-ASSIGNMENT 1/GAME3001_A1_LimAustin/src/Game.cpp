@@ -127,6 +127,16 @@ Uint32 Game::getFrames() const
 	return m_frames;
 }
 
+float Game::getDeltaTime() const
+{
+	return m_deltaTime;
+}
+
+void Game::setDeltaTime(const float time)
+{
+	m_deltaTime = time;
+}
+
 void Game::changeSceneState(const SceneState new_state)
 {
 	if (new_state != m_currentSceneState) {
@@ -157,6 +167,10 @@ void Game::changeSceneState(const SceneState new_state)
 		case PLAY_SCENE:
 			m_currentScene = new PlayScene();
 			std::cout << "play scene activated" << std::endl;
+			break;
+		case SEEKING_SCENE:
+			m_currentScene = new SeekingScene();
+			std::cout << "Seeking Scene activated" << std::endl;
 			break;
 		case END_SCENE:
 			m_currentScene = new EndScene();
