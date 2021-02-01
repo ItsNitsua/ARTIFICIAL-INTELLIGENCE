@@ -29,7 +29,7 @@ void CollisionScene::draw()
 
 void CollisionScene::update()
 {
-	m_pCollisionShip->setMaxSpeed(1); a
+	m_pCollisionShip->setMaxSpeed(1);
 	updateDisplayList();
 	//CollisionManager::AABBCheck(m_pCollisionShip, m_pObstacle);
 	if (CollisionManager::lineRectCheck(m_pCollisionShip->m_leftWhisker.Start(), m_pCollisionShip->m_leftWhisker.End(), // left whisk
